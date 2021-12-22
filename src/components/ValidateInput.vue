@@ -1,15 +1,20 @@
 <template>
     <div class="mb-3">
         <label class="form-label">{{ label}}</label>
-        <!-- <input type="text" class="form-control"  v-model="inputRef.val" 
-            :class="{ 'is-invalid':inputRef.error }"
-            @blur="validateInput"> -->
             <input
+            v-if="tag==='input'"
             v-bind="$attrs"
             class="form-control"
             :class="{ 'is-invalid':inputRef.error }" :value="inputRef.val"
             @input="updateValue"
             @blur="validateInput">
+            <textarea
+            v-else
+            v-bind="$attrs"
+            class="form-control"
+            :class="{ 'is-invalid':inputRef.error }" :value="inputRef.val"
+            @input="updateValue"
+            @blur="validateInput"></textarea>
             <span v-if="inputRef.error" class="invalid-feedback">{{ inputRef.message }}</span>
     </div>
 </template>
@@ -21,6 +26,7 @@ interface RuleProp{
     message:string
 }
 export type RulesProp =RuleProp[]
+export type TagType = 'input' | 'textarea'
 
 import { defineComponent, PropType, reactive ,onMounted} from 'vue'
 import { emitter } from './ValidateFrom.vue'
@@ -39,6 +45,10 @@ export default defineComponent({
         modelValue:{
             type:String,
             default:''
+        },
+        tag:{
+            type:String as PropType<TagType>,
+            default:'input'
         }
     },
     setup(props,context){

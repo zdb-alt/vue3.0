@@ -10,7 +10,7 @@
     <ul v-else  class="list-inline mb-0 mr-2">
         <li class="list-inline-item">
           <Dropdown :title="`你好${user.name}`">
-              <DropdownItem><a class="dropdown-item" href="#">新建文章</a></DropdownItem>
+              <DropdownItem><router-link class="dropdown-item" to="/create">新建文章</router-link></DropdownItem>
               <DropdownItem disabled><a class="dropdown-item" href="#">编辑资料</a></DropdownItem>
               <DropdownItem><a class="dropdown-item" href="#">退出登录</a></DropdownItem>
           </Dropdown>

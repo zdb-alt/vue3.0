@@ -1,10 +1,11 @@
 export interface UserProps{
   islogin:boolean,
   name?:string,
-  id?:number
+  id?:number,
+  columnId?:number
 }
 export const testUser: UserProps = {
-  islogin: false,
+  islogin: true,
   name: "zhang",
 };
 export interface ColumnProps {
